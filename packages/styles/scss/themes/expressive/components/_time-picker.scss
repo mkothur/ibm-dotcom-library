@@ -19,9 +19,7 @@
     height: carbon--rem(48px);
     width: carbon--rem(85px);
   }
-  .#{$prefix}--time-picker__select {
-    svg {
-      height: 100%;
-    }
+  .#{$prefix}--time-picker__select > svg {
+    height: 100%;
   }
 }
