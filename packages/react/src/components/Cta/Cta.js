@@ -18,8 +18,7 @@ import React from 'react';
  *
  * @param {object} props props object
  * @param {string} props.style style ( text | card | button | feature ).
- * @param {object} props.type tyle ( jump | local | external ).
- * @param {object} props.cta cta object which includes url, link text and target properties.
+ * @param {object} props.cta cta object which includes text, card, feature and buttons properties.
  * @returns {*} CTA Component
  */
 const CTA = ({ style, cta }) =>
@@ -28,28 +27,29 @@ const CTA = ({ style, cta }) =>
   ) : style === 'button' ? (
     <ButtonGroup buttons={renderButton(cta)} />
   ) : style === 'feature' ? (
-    <FeaturedLink
-      {...cta}
-      //icon={iconSelector(cta.type)}
-    />
+    <FeaturedLink {...cta} />
   ) : (
+    //icon={iconSelector(cta.type)}
     <LinkWithIcon href={cta.href}>
       {cta.copy}
       {iconSelector(cta.type)}
     </LinkWithIcon>
   );
+
 /**
- * sets icon based on link type
+ * sets icon based on selected type
  *
  * @param {string} type cta type ( external | jump | local)
  * @returns {*} cta type component
  */
 const iconSelector = type =>
-  type === 'external'
-    ? { Launch20 }
-    : type === 'jump'
-    ? { ArrowDown20 }
-    : { ArrowRight20 };
+  type === 'external' ? (
+    <Launch20 />
+  ) : type === 'jump' ? (
+    <ArrowDown20 />
+  ) : (
+    <ArrowRight20 />
+  );
 
 /**
  * sets button
@@ -65,11 +65,6 @@ const renderButton = cta =>
   });
 
 CTA.propTypes = {
-  // cta: PropTypes.shape({
-  //   href: PropTypes.string,
-  //   text: PropTypes.string,
-  //   target: PropTypes.string,
-  // }),
   cta: PropTypes.object,
   style: PropTypes.string,
   type: PropTypes.string,
