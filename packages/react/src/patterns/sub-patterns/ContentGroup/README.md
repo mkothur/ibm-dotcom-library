@@ -24,7 +24,15 @@ import 'yourapplication.scss';
 function App() {
   const copy = 'Lorem ipsum dolor sit amet.';
 
-  return <ContentGroup heading={copy}>//Content array goes here</ContentGroup>;
+  return (
+    <ContentGroup
+      heading={copy}
+      cta={
+        <CTA style="text" type="local" copy="IBM Homepage" href="www.ibm.com" />
+      }>
+      //Content array goes here
+    </ContentGroup>
+  );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
@@ -35,9 +43,10 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## Props
 
-| Name      | Required | Data Type | Default Value | Description  |
-| --------- | -------- | --------- | ------------- | ------------ |
-| `heading` | NO       | String    | null          | Heading text |
+| Name      | Required | Data Type | Default Value | Description                                                 |
+| --------- | -------- | --------- | ------------- | ----------------------------------------------------------- |
+| `heading` | NO       | String    | null          | Heading text                                                |
+| `cta`     | NO       | CTA       | Card          | card type CTA and for more information See `CTA` component. |
 
 ## Stable selectors
 
